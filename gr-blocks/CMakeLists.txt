@@ -21,6 +21,8 @@
 # Setup dependencies
 ########################################################################
 include(GrBoost)
+include(CMakeCargo)
+enable_language(Rust)
 
 ########################################################################
 # Register component
@@ -38,6 +40,7 @@ GR_SET_GLOBAL(GR_BLOCKS_INCLUDE_DIRS
     ${CMAKE_CURRENT_BINARY_DIR}/lib
     ${CMAKE_CURRENT_BINARY_DIR}/include
     ${VOLK_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/rust/include
 )
 
 ########################################################################
@@ -63,6 +66,10 @@ if(ENABLE_GRC)
     add_subdirectory(grc)
 endif(ENABLE_GRC)
 
+########################################################################
+# Add Rust Library
+########################################################################
+add_subdirectory(rust/rust-lib)
 ########################################################################
 # Create Pkg Config File
 ########################################################################

@@ -28,6 +28,7 @@
 #include "multiply_impl.h"
 #include <gnuradio/io_signature.h>
 #include <volk/volk.h>
+#include "rust_lib.h"
 
 namespace gr {
   namespace blocks {
@@ -60,9 +61,10 @@ namespace gr {
       int noi = d_vlen*noutput_items;
 
       memcpy(out, input_items[0], noi*sizeof(float));
-      for(size_t i = 1; i < input_items.size(); i++)
-        volk_32f_x2_multiply_32f(out, out, (float*)input_items[i], noi);
-
+      for(size_t i = 1; i < input_items.size(); i++) {
+        /* volk_32f_x2_multiply_32f(out, out, (float*)input_items[i], noi); */
+        rust_f_32f_x2_multiply_32f(out, out, (float*)input_items[i], noi);
+      }
       return noutput_items;
     }
 

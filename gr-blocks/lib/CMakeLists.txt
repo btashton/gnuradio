@@ -232,6 +232,7 @@ list(APPEND blocks_libs
     gnuradio-runtime
     ${VOLK_LIBRARIES}
     ${Boost_LIBRARIES}
+    rust-lib
 )
 
 add_library(gnuradio-blocks SHARED ${gr_blocks_sources})
